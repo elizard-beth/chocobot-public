@@ -24,6 +24,7 @@ client.on('ready', () => {
 client.on("messageUpdate", msg => {
   if(msg.author.id !== "767264117463187466") {
     embed
+    .setImage()
     .setThumbnail()
       .setColor('#0099ff')
       .setTitle('MESSAGE | EDITED')
@@ -37,6 +38,7 @@ client.on("messageUpdate", msg => {
 
 client.on("messageDelete", msg => {
   embed
+  .setImage()
   .setThumbnail()
     .setColor('#0099ff')
     .setTitle('MESSAGE | DELETED')
@@ -46,13 +48,13 @@ client.on("messageDelete", msg => {
   })  
 })
 
-client.on('message', msg => {
+client.on('message', msg => {  
   embed
   .setTitle("")
   .setDescription("") 
   .setImage();
 
-  if (msg.guild  && msg.author.id !== "767264117463187466") {
+  if (msg.guild && msg.author.id !== "767264117463187466") {
     if (!(logs[msg.guild.id])) {
       logs[msg.guild.id] = {}
       logs[msg.guild.id]["prefix"] = ";"
@@ -72,13 +74,16 @@ client.on('message', msg => {
     }
   
     else if (msg.content.startsWith(logs[msg.guild.id]["prefix"] + "prefix") && msg.member.hasPermission("KICK_MEMBERS")) {    
-      if (msg2.substr(7+ logs[msg.guild.id]["prefix"].length) !== ""){
-      logs[msg.guild.id]["prefix"] = msg2.substr(7+ logs[msg.guild.id]["prefix"].length);
-      msg.react("😊");msg.react("👍");
-      fs.writeFile("users.json", JSON.stringify(logs), err => { 
-        if (err) throw err;
-      }); 
-    } 
+      if (msg.content.split(" ")[1] !== ""){
+        logs[msg.guild.id]["prefix"] = msg2.split(" ")[1]
+        msg.react("😊");msg.react("👍");
+        fs.writeFile("users.json", JSON.stringify(logs), err => { 
+          if (err) throw err;
+        }); 
+      } 
+      else {
+        msg.react("😔");
+      }
     }
     // old code ends here
     else if (msg.content.startsWith(logs[msg.guild.id]["prefix"]) && msg.author.id !== "767264117463187466") {
