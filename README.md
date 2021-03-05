@@ -1,0 +1,1 @@
+This Discord bot was created by WideSteal and uploaded to Github with the purpose of others helping with the project. Please do not steal any source code.

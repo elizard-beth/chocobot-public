@@ -1,0 +1,11 @@
+{
+  "name": "chocobot",
+  "version": "0.0.1",
+  "description": "A utility discord bot",
+  "main": "chocobot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "WideSteal",
+  "license": "Unlicense"
+}
