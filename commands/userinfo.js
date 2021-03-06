@@ -1,5 +1,5 @@
 module.exports = {
-    execute(msg, _, __, ___, ____, _____) { 
+    execute(msg, _, __, embed, ____, _____) { 
       try{if (msg.mentions.members.first().user.lastMessage) {
         embed
         .setThumbnail(msg.mentions.members.first().user.avatarURL())
