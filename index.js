@@ -75,7 +75,7 @@ client.on('message', msg => {
   
     else if (msg.content.startsWith(logs[msg.guild.id]["prefix"] + "prefix") && msg.member.hasPermission("KICK_MEMBERS")) {    
       if (msg.content.split(" ")[1] !== ""){
-        logs[msg.guild.id]["prefix"] = msg2.split(" ")[1]
+        logs[msg.guild.id]["prefix"] = msg.content.split(" ")[1]
         msg.react("😊");msg.react("👍");
         fs.writeFile("users.json", JSON.stringify(logs), err => { 
           if (err) throw err;
@@ -114,5 +114,6 @@ client.on('message', msg => {
   }
 
 });
+
 
 client.login('no')
