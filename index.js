@@ -2,14 +2,12 @@ const Discord = require('discord.js');
 const fs = require("fs"); 
 const client = new Discord.Client();
 let embed = new Discord.MessageEmbed();
-
-
 let logs;
+let arrays;
+
 fs.readFile('users.json', 'utf8', function(_, data){ 
   logs = JSON.parse(data) 
 });
-
-let arrays;
 fs.readFile('arrays.json', 'utf8', function(_, data){ 
    arrays = JSON.parse(data);
 });
@@ -20,12 +18,11 @@ client.on('ready', () => {
   client.user.setPresence({activity: {name: `;help | v2.5.6`,}});
 });
 
-
 client.on("messageUpdate", msg => {
   if(msg.author.id !== "767264117463187466") {
     embed
-    .setImage()
-    .setThumbnail()
+      .setImage()
+      .setThumbnail()
       .setColor('#0099ff')
       .setTitle('MESSAGE | EDITED')
       .setDescription("Link: https://discord.com/channels/" + msg.guild.id + "/" + msg.channel.id + "/" + msg.id + "\n\nWas originally: `" + msg.content + "`\nCreated by:\nUsername: " + msg.author.username + "#" + msg.author.discriminator + " ID: " + msg.author.id + "\n")
@@ -35,11 +32,10 @@ client.on("messageUpdate", msg => {
   }
 })
 
-
 client.on("messageDelete", msg => {
   embed
-  .setImage()
-  .setThumbnail()
+    .setImage()
+    .setThumbnail()
     .setColor('#0099ff')
     .setTitle('MESSAGE | DELETED')
     .setDescription("Link: https://discord.com/channels/" + msg.guild.id + "/" + msg.channel.id + "/" + msg.id + "\n\nWas originally: `" + msg.content + "`\nCreated by:\nUsername: " + msg.author.username + "#" + msg.author.discriminator + " ID: " + msg.author.id + "\n")
@@ -50,33 +46,44 @@ client.on("messageDelete", msg => {
 
 client.on('message', msg => {  
   embed
-  .setTitle("")
-  .setDescription("") 
-  .setImage();
+    .setTitle("")
+    .setDescription("") 
+    .setThumbnail()
+    .setImage();
 
   if (msg.guild && msg.author.id !== "767264117463187466") {
     if (!(logs[msg.guild.id])) {
       logs[msg.guild.id] = {}
-      logs[msg.guild.id]["prefix"] = ";"
+      prefix = ";"
     } 
 
+    let prefix =  logs[msg.guild.id]["prefix"];
+
+    function requireCommand(command) {
+      try { require(`./commands/${command}`)
+      .execute(msg, prefix.length, prefix, embed, arrays, client); } catch {}
+    }
+
     // this is some much older code that i didn't bother to clean up
-    if (msg.content.startsWith(logs[msg.guild.id]["prefix"] + "logs") && msg.member.hasPermission("KICK_MEMBERS")) {   
-      if ((msg.guild.channels.cache.get(msg.content.substr(5+ logs[msg.guild.id]["prefix"].length)))){
-      msg.react("😊");msg.react("👍");
-      logs[msg.guild.id]["logs"] = msg.content.substr(5+ logs[msg.guild.id]["prefix"].length);
-      fs.writeFile("users.json", JSON.stringify(logs), err => { 
-        if (err) throw err;
-      }); }
+    if (msg.content.startsWith(prefix + "logs") && msg.member.hasPermission("KICK_MEMBERS")) {   
+      if (msg.guild.channels.cache.get(msg.content.split(" ")[1])) {
+        msg.react("😊");
+        msg.react("👍");
+        logs[msg.guild.id]["logs"] = msg.content.split(" ")[1];
+        fs.writeFile("users.json", JSON.stringify(logs), err => { 
+         if (err) throw err;
+        }); 
+      }
       else {
         msg.react("😔");
       }
     }
   
-    else if (msg.content.startsWith(logs[msg.guild.id]["prefix"] + "prefix") && msg.member.hasPermission("KICK_MEMBERS")) {    
-      if (msg.content.split(" ")[1] !== ""){
+    else if (msg.content.startsWith(prefix + "prefix") && msg.member.hasPermission("KICK_MEMBERS")) {    
+      if (msg.content.split(" ")[1] !== "") {
         logs[msg.guild.id]["prefix"] = msg.content.split(" ")[1]
-        msg.react("😊");msg.react("👍");
+        msg.react("😊");
+        msg.react("👍");
         fs.writeFile("users.json", JSON.stringify(logs), err => { 
           if (err) throw err;
         }); 
@@ -86,34 +93,18 @@ client.on('message', msg => {
       }
     }
     // old code ends here
-    else if (msg.content.startsWith(logs[msg.guild.id]["prefix"]) && msg.author.id !== "767264117463187466") {
+    else if (msg.content.startsWith(prefix) && msg.author.id !== "767264117463187466") {
       if (msg.content.search(" ") > 0) {
-        try { 
-          require(`./commands/${msg.content.substr(logs[msg.guild.id]["prefix"].length, msg.content.search(" ") - 1)}`)
-          .execute(msg, logs[msg.guild.id]["prefix"].length, logs[msg.guild.id]["prefix"], embed, arrays, client);
-        }
-        catch (e) { 
-          msg.channel.send(" I ran into some trouble running this command."); 
-          console.log(e); 
-        }
+        requireCommand(msg.content.substr(prefix.length).split(" ")[0]);
       }
-    else {
-        try { 
-          require(`./commands/${msg.content.substr(logs[msg.guild.id]["prefix"].length)}`)
-          .execute(msg, logs[msg.guild.id]["prefix"].length, logs[msg.guild.id]["prefix"], embed, arrays, client);
-        }
-        catch (e) { 
-          msg.channel.send(" I ran into some trouble running this command."); 
-          console.log(e); 
-        }
+      else {
+        requireCommand(msg.content.substr(prefix.length));
       }
     }
   }
-  else if (msg.author.id !== "767264117463187466"){
-    msg.reply("I don't work in DMs!")
+  else if (!msg.guild) {
+    msg.reply("I am not functional in DMs")
   }
-
 });
-
 
 client.login('no')
