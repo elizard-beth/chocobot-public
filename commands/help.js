@@ -40,7 +40,7 @@ module.exports = {
             embed
               .setThumbnail()
               .setColor('#0099ff')
-              .setTitle(msg.content.substr(4 + l, 5 + l).substr(1,1).toUpperCase() + msg.content.substr(5 + l) + " command")
+              .setTitle(msg.content.substr(4 + l, 5 + l).substr(1,1).toUpperCase() + msg.content.substr(6 + l) + " command")
               .setDescription(`**Description:**\n${coms[msg.content.substr(4 + l).replace(/ /g, "")] || "I couldn't find this command."}`);
             msg.channel.send(embed);
         }
