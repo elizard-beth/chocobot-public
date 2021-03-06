@@ -102,7 +102,7 @@ client.on('message', msg => {
       }
     }
   }
-  else if (!msg.guild) {
+  else if (!msg.guild && !(msg.author.id !== "767264117463187466")) {
     msg.reply("I am not functional in DMs")
   }
 });
