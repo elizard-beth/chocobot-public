@@ -10,7 +10,7 @@ const coms = {
   "owo":"Owo-ifies your message\n**Known bugs:**\nThere is currently 0 known bugs associated with this command\n**Requirements**:\nNo permissions are required to run this command",
   "latest":"Gets information on the latest version\n**Known bugs:**\nThere is currently 0 known bugs associated with this command\n**Requirements**:\nNo permissions are required to run this command",
   "support":"Gets the invite link to the support server\n**Known bugs:**\nThere is currently 0 known bugs associated with this command\n**Requirements**:\nNo permissions are required to run this command",
-  "math":"Evaluates your message as math\n**Known bugs:**\nThere is currently 0 known bugs associated with this command\n**Requirements**:\nNo permissions are required to run this command",
+  "math":"THIS COMMAND IS REMOVED IN THIS VERSION\n**Known bugs:**\nThere is currently 0 known bugs associated with this command\n**Requirements**:\nNo permissions are required to run this command",
   "logs":"Changes the logs channel to the first parameter\n**Known bugs:**\nThere is currently 0 known bugs associated with this command\n**Requirements**:\nKick members permission required",
   "prefix":"Changes this servers prefix to the first parameter\n**Known bugs:**\nYou can set `_ _` as the prefix and it confuses people\n**Requirements**:\nKick members permission required",
   "serverinfo":"Gets information on this server\n**Known bugs:**\nThere is currently 0 known bugs associated with this command\n**Requirements**:\nNo permissions are required to run this command",
