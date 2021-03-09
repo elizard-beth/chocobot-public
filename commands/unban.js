@@ -1,3 +1,4 @@
+const fs=require('fs');
 module.exports = {
   execute(msg, _, __, embed) {
     if (msg.member.hasPermission("BAN_MEMBERS")) {
