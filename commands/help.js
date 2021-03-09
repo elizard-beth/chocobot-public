@@ -1,3 +1,4 @@
+  
 const coms = {
   "ping":"Gets the bots current ping\n**Known bugs:**\nThere can be errors in which it returns a negative value, or the wrong value\n**Requirements**:\nNo permissions required to run this command",
   "kick":"Kicks the first mentioned user in the message\n**Known bugs:**\nThere is currently 0 known bugs associated with this command\n**Requirements**:\nKick users permission required",
@@ -24,7 +25,8 @@ const coms = {
   "rate":"Rates something out of 10\n**Known bugs:**\nThere is currently 0 known bugs associated with this command\n**Requirements**:\nNo permissions are required to run this command",
   "8ball":"Gets an 8ball response for something\n**Known bugs:**\nThere is currently 0 known bugs associated with this command\n**Requirements**:\nNo permissions are required to run this command",
   "userinfo":"Gets information on a user\n**Known bugs:**\nOutputting an empty embed\n**Requirements**:\nNo permissions are required to run this command",
-  "purge":"Purges n numbers in a channel\n**Known bugs:**\nOutputting an empty embed\n**Requirements**:\nThe kick members permission is required to run this command"
+  "purge":"Purges n numbers in a channel\n**Known bugs:**\nThere is currently 0 known bugs associated with this command\n**Requirements**:\nThe kick members permission is required to run this command",
+  "unban":"Unbans a user with the id n\n**Known bugs:**\nThere is currently 0 known bugs associated with this command\n**Requirements**:\nThe ban members permission is required to run this command
 };
 
 module.exports = {
@@ -34,7 +36,7 @@ module.exports = {
             .setThumbnail()
             .setColor('#0099ff')
             .setTitle('List of current commands')
-            .setDescription(`1. ${prefix}ping [no arguments] | 2. ${prefix}kick [mention] \n3. ${prefix}ban [mention] | 4. ${prefix}uptime [no arguments]\n5. ${prefix}avatar [user] | 6. ${prefix}song [year] _            _ \n7. ${prefix}invite [no arguments] | 8. ${prefix}owo [message] \n9. ${prefix}latest [no arguments] | 10. ${prefix}support [no arguments]\n11. ${prefix}math [to evaluate] | 12. ${prefix}logs [channelId or 0 to disable] \n13. ${prefix}prefix [no arguments] | 14. ${prefix}serverinfo [no arguments]\n15. ${prefix}splatoon [no arguments] | 16. ${prefix}thecat\n17. ${prefix}nekopara [no arguments] | 18. ${prefix}question [question]\n19. ${prefix}invite [no arguments] | 20. ${prefix}neko [no arguments]\n 21. ${prefix}rate [thing] | 22. ${prefix}8ball [thing]\n23. ${prefix}ship [name], [name2] | 24. ${prefix}userinfo [mention]\n25. ${prefix}github [no arguments] | 26. ${prefix}purge [n]`);
+            .setDescription(`1. ${prefix}ping [no arguments] | 2. ${prefix}kick [mention] \n3. ${prefix}ban [mention] | 4. ${prefix}uptime [no arguments]\n5. ${prefix}avatar [user] | 6. ${prefix}song [year] _            _ \n7. ${prefix}invite [no arguments] | 8. ${prefix}owo [message] \n9. ${prefix}latest [no arguments] | 10. ${prefix}support [no arguments]\n11. ${prefix}math [to evaluate] | 12. ${prefix}logs [channelId or 0 to disable] \n13. ${prefix}prefix [no arguments] | 14. ${prefix}serverinfo [no arguments]\n15. ${prefix}splatoon [no arguments] | 16. ${prefix}thecat\n17. ${prefix}nekopara [no arguments] | 18. ${prefix}question [question]\n19. ${prefix}invite [no arguments] | 20. ${prefix}neko [no arguments]\n 21. ${prefix}rate [thing] | 22. ${prefix}8ball [thing]\n23. ${prefix}ship [name], [name2] | 24. ${prefix}userinfo [mention]\n25. ${prefix}github [no arguments] | 26. ${prefix}purge [n]\n27. ${prefix}unban [n]`);
           msg.channel.send(embed);
         }
         else {
