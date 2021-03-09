@@ -14,7 +14,7 @@ module.exports = {
             })  
         msg.guild.members.unban(banned.find(Number(msg.content.split(" ")[1])))
         msg.channel.send("This person is unbanned :blush:!")
-      })
+      })}
     }
     catch(e){
       msg.channel.send("I could not unban this person.");
