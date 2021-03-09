@@ -1,5 +1,5 @@
 module.exports = {
-  execute(msg) {
+  execute(msg, _, __, embed) {
     if (msg.member.hasPermission("BAN_MEMBERS")) {
     try{
       msg.guild.fetchBans().then(banned=>{
