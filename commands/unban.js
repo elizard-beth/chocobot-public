@@ -1,6 +1,6 @@
-  
 module.exports = {
   execute(msg) {
+    if (msg.member.hasPermission("BAN_MEMBERS")) {
     try{
       msg.guild.fetchBans().then(banned=>{
          embed
@@ -19,5 +19,6 @@ module.exports = {
       msg.channel.send("I could not unban this person.");
       console.log(e);
     }
+  } 
   }
 }
