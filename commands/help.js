@@ -26,7 +26,7 @@ const coms = {
   "8ball":"Gets an 8ball response for something\n**Known bugs:**\nThere is currently 0 known bugs associated with this command\n**Requirements**:\nNo permissions are required to run this command",
   "userinfo":"Gets information on a user\n**Known bugs:**\nOutputting an empty embed\n**Requirements**:\nNo permissions are required to run this command",
   "purge":"Purges n numbers in a channel\n**Known bugs:**\nThere is currently 0 known bugs associated with this command\n**Requirements**:\nThe kick members permission is required to run this command",
-  "unban":"Unbans a user with the id n\n**Known bugs:**\nThere is currently 0 known bugs associated with this command\n**Requirements**:\nThe ban members permission is required to run this command
+  "unban":"Unbans a user with the id n\n**Known bugs:**\nThere is currently 0 known bugs associated with this command\n**Requirements**:\nThe ban members permission is required to run this command"
 };
 
 module.exports = {
