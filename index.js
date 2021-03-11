@@ -16,7 +16,7 @@ fs.readFile('arrays.json', 'utf8', function(_, data){
 client.on('ready', () => {
   client.status
   console.log((`Logged in as ${client.user.tag}`));
-  client.user.setPresence({activity: {name: `;help | v2.5.6`,}});
+  client.user.setPresence({activity: {name: `;help | v2.5.8`,}});
 });
 
 client.on("messageUpdate", msg => {
