@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const math = require('mathjs');
 const fs = require("fs"); 
 const client = new Discord.Client();
 let embed = new Discord.MessageEmbed();
@@ -61,7 +62,7 @@ client.on('message', msg => {
 
     function requireCommand(command) {
       try { require(`./commands/${command}`)
-      .execute(msg, prefix.length, prefix, embed, arrays, client); } catch {}
+      .execute(msg, prefix.length, prefix, embed, arrays, client, math); } catch  (e){ console.log(e); }
     }
 
     // this is some much older code that i didn't bother to clean up
