@@ -1,11 +1,21 @@
 {
   "name": "chocobot",
-  "version": "0.0.1",
-  "description": "A utility discord bot",
-  "main": "chocobot.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/widesteal321/chocobot.git"
   },
-  "author": "WideSteal",
-  "license": "Unlicense"
+  "description": "chocobot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "widesteal",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "mathjs": "^9.3.0"
+  },
+  "engines": {
+    "node": "15.6.0"
+  }
 }
