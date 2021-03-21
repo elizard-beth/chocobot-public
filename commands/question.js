@@ -1,5 +1,5 @@
 module.exports = {
-    execute(msg, _, __, ___, ____, _____) { 
+    execute(msg) { 
       if (Math.floor(Math.random() * 2) == 1) {
         msg.channel.send("ya");
       } 
