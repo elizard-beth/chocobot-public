@@ -4,6 +4,7 @@ const fs = require("fs");
 const client = new Discord.Client();
 let embed = new Discord.MessageEmbed();
 let logs;
+let prefix;
 let arrays;
 
 fs.readFile('users.json', 'utf8', function(_, data){ 
@@ -16,7 +17,7 @@ fs.readFile('arrays.json', 'utf8', function(_, data){
 client.on('ready', () => {
   client.status
   console.log((`Logged in as ${client.user.tag}`));
-  client.user.setPresence({activity: {name: `;help | created by WideSteal`,}});
+  client.user.setPresence({activity: {name: `;help | v2.5.8`,}});
 });
 
 client.on("messageUpdate", msg => {
@@ -53,9 +54,12 @@ client.on('message', msg => {
     .setImage();
 
   if (msg.guild && msg.author.id !== "767264117463187466") {
+    
+    if (msg.channel.id === "817264760877613097" && msg.content !== "hi") { 
+      msg.delete();
+    }
     if (!(logs[msg.guild.id])) {
-      logs[msg.guild.id] = {}
-      prefix = ";"
+      logs[msg.guild.id] = {["prefix"]: ";"};
     } 
 
     let prefix =  logs[msg.guild.id]["prefix"];
@@ -80,7 +84,7 @@ client.on('message', msg => {
       }
     }
   
-    else if (msg.content.startsWith(prefix + "prefix") && msg.member.hasPermission("KICK_MEMBERS")) {    
+    else if (msg.content.startsWith(prefix + "prefix") || msg.content.startsWith(";prefix") && msg.member.hasPermission("KICK_MEMBERS")) {    
       if (msg.content.split(" ")[1] !== "") {
         logs[msg.guild.id]["prefix"] = msg.content.split(" ")[1]
         msg.react("😊");
@@ -96,10 +100,10 @@ client.on('message', msg => {
     // old code ends here
     else if (msg.content.startsWith(prefix) && msg.author.id !== "767264117463187466") {
       if (msg.content.search(" ") > 0) {
-        requireCommand(msg.content.substr(prefix.length).split(" ")[0]);
+        try { requireCommand(msg.content.substr(prefix.length).split(" ")[0]); } catch {}
       }
       else {
-        requireCommand(msg.content.substr(prefix.length));
+        try { requireCommand(msg.content.substr(prefix.length)); } catch {}
       }
     }
   }
