@@ -1,10 +1,10 @@
-  
+// what the fuck did i just write
 const fs = require('fs')
 module.exports = {
-    execute(msg, _, __, ___, ____, _______) {try{
-        if (msg.member.hasPermission("BAN_MEMBERS")) {
+    execute(msg, _, __, ___, ____, client) {try{
+        if (msg.member.hasPermission("BAN_MEMBERS") && client.hasPermission("BAN_MEMBERS")) {
             try {
-                msg.mentions.members.first().ban();
+                try{msg.mentions.members.first().ban();}catch{}
                 embed
                  .setThumbnail()
                  .setColor('#0099ff')
